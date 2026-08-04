@@ -605,6 +605,170 @@ const characters = [
   { hanzi: "少", level: 2, jyutping: ["siu2"], meanings: ["few", "little (in amount)"],
     meaningMnemonic: "少 looks like 小 (small) losing a stroke off the bottom — even less than SMALL, just a FEW.",
     readingMnemonic: "A homophone of 小 (siu2) — FEW and SMALL sound identical in Cantonese, said rising." },
+
+  // ===== Second pass: 2 extra characters per level, appended at the end so
+  // no existing id shifts. These exist mainly to widen the pool of
+  // components available for the vocabulary/expression expansion below. =====
+
+  // -- Level 1 --
+  { hanzi: "零", level: 1, jyutping: ["ling4"], meanings: ["zero"],
+    meaningMnemonic: "零 has the rain radical (雨) over 令 — raindrops so scattered they add up to nothing, ZERO.",
+    readingMnemonic: "Ling4 sounds like 'ling' drawn out low — a bell going 'ling4...' into empty silence, ZERO." },
+  { hanzi: "太", level: 1, jyutping: ["taai3"], meanings: ["too", "very"],
+    meaningMnemonic: "太 is 大 (big) with an extra dot — even BIGGER than big, TOO much.",
+    readingMnemonic: "Taai3 sounds like 'tie' said flat — tying your tie TOO tight, flat and final." },
+
+  // -- Level 2 --
+  { hanzi: "朋", level: 2, jyutping: ["pang4"], meanings: ["friend (component)"],
+    meaningMnemonic: "朋 is two moons (月月) side by side — two people who show up night after night together, FRIENDS.",
+    readingMnemonic: "Pang4 sounds like 'pung' with an 'a', low and drawn out — two FRIENDS bumping shoulders, low and easy." },
+  { hanzi: "友", level: 2, jyutping: ["jau5"], meanings: ["friend"],
+    meaningMnemonic: "友 shows two hands reaching out to clasp each other — two FRIENDS shaking hands.",
+    readingMnemonic: "Jau5 sounds like 'yow' dipping then rising, same as 有 (to have) — having a FRIEND is having something precious." },
+
+  // -- Level 3 --
+  { hanzi: "夜", level: 3, jyutping: ["je6"], meanings: ["night"],
+    meaningMnemonic: "夜 has the evening radical (夕) tucked under a roof — settling in under a roof once NIGHT falls.",
+    readingMnemonic: "Je6 sounds like 'yeh' said low and flat — a low, sleepy 'yeh' as NIGHT settles in." },
+  { hanzi: "朝", level: 3, jyutping: ["ziu1"], meanings: ["morning"],
+    meaningMnemonic: "朝 has the sun (日) rising between grass (十 and 十-like strokes) — the sun peeking up at the start of MORNING.",
+    readingMnemonic: "Ziu1 sounds like 'jew' said high and flat — a bright, high call to greet the MORNING." },
+
+  // -- Level 4 --
+  { hanzi: "寫", level: 4, jyutping: ["se2"], meanings: ["to write"],
+    meaningMnemonic: "寫 has the roof radical (宀) over a nest-like shape — sitting quietly under a roof to WRITE something down.",
+    readingMnemonic: "Se2 sounds like 'seh' rising, like asking 'se2? Did you WRITE that down?'" },
+  { hanzi: "諗", level: 4, jyutping: ["nam2"], meanings: ["to think", "to reckon"],
+    meaningMnemonic: "諗 has the speech radical (言) next to 念 (to miss/recite) — words turning over quietly in your head as you THINK.",
+    readingMnemonic: "Nam2 sounds like 'num' rising, like tapping your temple and going 'nam2? Let me THINK about it.'" },
+
+  // -- Level 5 --
+  { hanzi: "場", level: 5, jyutping: ["coeng4"], meanings: ["place", "field", "venue"],
+    meaningMnemonic: "場 has the earth radical (土) next to sun rising over ground (昜) — an open patch of earth cleared for a PLACE or VENUE.",
+    readingMnemonic: "Coeng4 sounds like 'churng', low and drawn out — a big, open VENUE, low and spacious." },
+  { hanzi: "房", level: 5, jyutping: ["fong2"], meanings: ["room"],
+    meaningMnemonic: "房 has the door radical (戶) next to square/direction (方) — a door leading into a squared-off ROOM.",
+    readingMnemonic: "Fong2 sounds like 'fong' rising, like calling out 'fong2? Which ROOM is it?'" },
+
+  // -- Level 6 --
+  { hanzi: "嗰", level: 6, jyutping: ["go2"], meanings: ["that (demonstrative)"],
+    meaningMnemonic: "嗰 has the mouth radical (口) next to 果 (fruit/result) — said aloud while pointing further away: THAT one over there.",
+    readingMnemonic: "Go2 sounds just like 個 (go3) but rising — pointing farther off and going 'go2?' — THAT one, not this one." },
+  { hanzi: "咩", level: 6, jyutping: ["me1"], meanings: ["what (colloquial particle)"],
+    meaningMnemonic: "咩 has the mouth radical (口) next to sheep (羊) — a sheep's confused bleat is basically Cantonese for 'WHAT?'",
+    readingMnemonic: "Me1 sounds exactly like a sheep's 'meh', high and flat — 'me1?' WHAT did you just say?" },
+
+  // -- Level 7 --
+  { hanzi: "湯", level: 7, jyutping: ["tong1"], meanings: ["soup"],
+    meaningMnemonic: "湯 has the water radical (氵) next to sun over ground (昜) — hot water simmering into a bowl of SOUP.",
+    readingMnemonic: "Tong1 sounds like 'tong' (rhymes with 'song'), high and flat — a steaming bowl of SOUP, high and hot." },
+  { hanzi: "甜", level: 7, jyutping: ["tim4"], meanings: ["sweet"],
+    meaningMnemonic: "甜 has the tongue radical (舌) next to sweet (甘) — your tongue tasting something SWEET.",
+    readingMnemonic: "Tim4 sounds like 'team', low and drawn out — savoring something SWEET slowly, low and content." },
+
+  // -- Level 8 --
+  { hanzi: "又", level: 8, jyutping: ["jau6"], meanings: ["also", "again"],
+    meaningMnemonic: "又 looks like a hand reaching out one more time — doing the same thing AGAIN.",
+    readingMnemonic: "Jau6 sounds just like 右 (right) but flatter — reaching to the right AGAIN and ALSO once more." },
+  { hanzi: "仲", level: 8, jyutping: ["zung6"], meanings: ["still", "moreover"],
+    meaningMnemonic: "仲 has the person radical (亻) next to middle (中) — a person still standing right in the MIDDLE, STILL there.",
+    readingMnemonic: "Zung6 sounds just like 中 (zung1) but low and flat — STILL stuck right in the middle, low and unmoved." },
+
+  // -- Level 9 --
+  { hanzi: "橙", level: 9, jyutping: ["caang2"], meanings: ["orange"],
+    meaningMnemonic: "橙 has the wood/tree radical (木) next to 登 (ascend) — an ORANGE tree climbing up toward the sun.",
+    readingMnemonic: "Caang2 sounds like 'chang' rising — biting into an ORANGE and going 'caang2!' at the tang." },
+  { hanzi: "灰", level: 9, jyutping: ["fui1"], meanings: ["gray", "ash"],
+    meaningMnemonic: "灰 has fire (火) over a hand-like stroke — what's left in your hand after fire burns out: GRAY ash.",
+    readingMnemonic: "Fui1 sounds like 'foo-ee' said high and flat — blowing away a puff of GRAY ash." },
+
+  // -- Level 10 --
+  { hanzi: "面", level: 10, jyutping: ["min6"], meanings: ["face"],
+    meaningMnemonic: "面 is an outline of a FACE with a single eye marked inside — a simple sketch of a FACE.",
+    readingMnemonic: "Min6 is a homophone of 麵 (noodles) but here it's your FACE — say it low and flat, staring someone right in the FACE." },
+  { hanzi: "牙", level: 10, jyutping: ["ngaa4"], meanings: ["tooth"],
+    meaningMnemonic: "牙 looks like a single pointed TOOTH sticking out of the jaw.",
+    readingMnemonic: "Ngaa4 sounds like 'nga' drawn out low — baring your TOOTH with a low growl." },
+
+  // -- Level 11 --
+  { hanzi: "樹", level: 11, jyutping: ["syu6"], meanings: ["tree"],
+    meaningMnemonic: "樹 has the wood radical (木) next to 對-like element — a tall trunk of wood standing upright, a TREE.",
+    readingMnemonic: "Syu6 sounds just like 書 (book) but low and flat — a TREE provides the paper that makes a book." },
+  { hanzi: "花", level: 11, jyutping: ["faa1"], meanings: ["flower"],
+    meaningMnemonic: "花 has the grass radical (艹) next to change (化) — grass that changes/blooms into a FLOWER.",
+    readingMnemonic: "Faa1 sounds like 'fah' said high and flat — a bright FLOWER blooming high and open." },
+
+  // -- Level 12 --
+  { hanzi: "飛", level: 12, jyutping: ["fei1"], meanings: ["to fly", "ticket"],
+    meaningMnemonic: "飛 looks like a bird's wings spread wide mid-flap — soaring up, to FLY; also slang for a TICKET, something that lets you fly off.",
+    readingMnemonic: "Fei1 sounds like 'fay' said high and flat — a bird taking off high into the sky, FLYING." },
+  { hanzi: "橋", level: 12, jyutping: ["kiu4"], meanings: ["bridge"],
+    meaningMnemonic: "橋 has the wood radical (木) next to tall/proud (喬) — a tall wooden structure standing proud over a river, a BRIDGE.",
+    readingMnemonic: "Kiu4 sounds like 'kew', low and drawn out — the long, low arc of a BRIDGE." },
+
+  // -- Level 13 --
+  { hanzi: "憎", level: 13, jyutping: ["zang1"], meanings: ["to hate", "to dislike"],
+    meaningMnemonic: "憎 has the heart radical (忄) next to 曾 (once/already) — a heart that's already had enough, starting to HATE.",
+    readingMnemonic: "Zang1 sounds like 'jang', high and flat — a sharp, bitter 'zang1!' of HATRED." },
+  { hanzi: "傷", level: 13, jyutping: ["soeng1"], meanings: ["hurt", "injured", "sad"],
+    meaningMnemonic: "傷 has the person radical (亻) next to an arrow-like wound shape — a person struck and HURT.",
+    readingMnemonic: "Soeng1 sounds like 'sung' with an 'oe', high and flat — a sharp wince of pain, HURT and SAD." },
+
+  // -- Level 14 --
+  { hanzi: "銀", level: 14, jyutping: ["ngan4"], meanings: ["silver", "money (bank)"],
+    meaningMnemonic: "銀 has the metal radical (釒) next to 艮 — a shining metal, SILVER, the stuff banks are built on.",
+    readingMnemonic: "Ngan4 sounds like 'ngan', low and drawn out — the low clink of SILVER coins." },
+  { hanzi: "埋", level: 14, jyutping: ["maai4"], meanings: ["near", "together", "to bury"],
+    meaningMnemonic: "埋 has the earth radical (土) next to 里 (village) — bringing everything TOGETHER, close to the earth of home; used in 埋單 to call for the bill.",
+    readingMnemonic: "Maai4 sounds just like 買/賣 but low and drawn out — pulling everything close TOGETHER, low and settled." },
+
+  // -- Level 15 --
+  { hanzi: "教", level: 15, jyutping: ["gaau3"], meanings: ["to teach"],
+    meaningMnemonic: "教 has a hand holding a stick (攵) next to a child-like shape (孝) — the old-school way to TEACH a lesson.",
+    readingMnemonic: "Gaau3 sounds like 'gow' said flat — a teacher's flat, no-nonsense voice as they TEACH." },
+  { hanzi: "練", level: 15, jyutping: ["lin6"], meanings: ["to practice"],
+    meaningMnemonic: "練 has the silk radical (糹) next to 柬 (select) — carefully selecting and refining thread over and over, to PRACTICE.",
+    readingMnemonic: "Lin6 sounds like 'lin', low and flat — repeating the same drill low and steady, PRACTICE makes perfect." },
+
+  // -- Level 16 --
+  { hanzi: "億", level: 16, jyutping: ["jik1"], meanings: ["hundred million"],
+    meaningMnemonic: "億 has the person radical (亻) next to 意 (idea) — a number so big it's hard for one person to even imagine, a HUNDRED MILLION.",
+    readingMnemonic: "Jik1 sounds like 'yick' said high and flat — the number climbs so high it makes you go 'yick!'" },
+  { hanzi: "準", level: 16, jyutping: ["zeon2"], meanings: ["accurate", "punctual", "allowed"],
+    meaningMnemonic: "準 has the water radical (氵) next to bird (隹) — water finding its level exactly, ACCURATE and PUNCTUAL.",
+    readingMnemonic: "Zeon2 sounds like 'joon' rising — checking your watch and going 'zeon2? Right ON TIME?'" },
+
+  // -- Level 17 --
+  { hanzi: "床", level: 17, jyutping: ["cong4"], meanings: ["bed"],
+    meaningMnemonic: "床 has the roof radical (广) over wood (木) — a wooden frame under a roof, a BED.",
+    readingMnemonic: "Cong4 sounds like 'chong', low and drawn out — sinking low into a comfy BED." },
+  { hanzi: "視", level: 17, jyutping: ["si6"], meanings: ["to view", "vision"],
+    meaningMnemonic: "視 has the see radical (見) next to sign/display (示) — a display meant to be VIEWED, as in 電視 (television).",
+    readingMnemonic: "Si6 sounds just like 事 but low and flat — staring low and steady, keeping something in VIEW." },
+
+  // -- Level 18 --
+  { hanzi: "藥", level: 18, jyutping: ["joek6"], meanings: ["medicine"],
+    meaningMnemonic: "藥 has the grass radical (艹) over music/joy (樂) — herbs and plants brewed to bring joy back to a sick body, MEDICINE.",
+    readingMnemonic: "Joek6 sounds like 'yerk', low and flat — swallowing a bitter dose of MEDICINE with a low grimace." },
+  { hanzi: "院", level: 18, jyutping: ["jyun2"], meanings: ["institution (hospital)"],
+    meaningMnemonic: "院 has the mound/enclosure radical (阝) next to 完 (complete) — a walled, complete compound, an INSTITUTION like a hospital.",
+    readingMnemonic: "Jyun2 sounds like 'yune' rising — asking 'jyun2? Which hospital, which INSTITUTION?'" },
+
+  // -- Level 19 --
+  { hanzi: "齊", level: 19, jyutping: ["cai4"], meanings: ["together", "all", "even"],
+    meaningMnemonic: "齊 looks like a row of plants all grown to the same even height — everyone lined up TOGETHER, all even.",
+    readingMnemonic: "Cai4 sounds like 'chai', low and drawn out — everyone arriving TOGETHER, low and in sync: 一齊." },
+  { hanzi: "晏", level: 19, jyutping: ["aan3"], meanings: ["late", "midday"],
+    meaningMnemonic: "晏 has the sun radical (日) over peace (安) — the sun sitting peacefully high overhead at MIDDAY, or sitting LATE into the day.",
+    readingMnemonic: "Aan3 sounds like 'ahn' said flat — a lazy, flat 'aan3' as you sleep in LATE." },
+
+  // -- Level 20 --
+  { hanzi: "或", level: 20, jyutping: ["waak6"], meanings: ["or"],
+    meaningMnemonic: "或 has a weapon (戈) guarding a boundary (口) — deciding between one side OR the other at the border.",
+    readingMnemonic: "Waak6 sounds like 'wok' said low and flat — pick this wok OR that one, low and undecided." },
+  { hanzi: "雖", level: 20, jyutping: ["seoi1"], meanings: ["although"],
+    meaningMnemonic: "雖 has insect (虫) next to mouth (口) and bird (隹) — a mix of mismatched creatures crammed together, ALTHOUGH they don't quite belong.",
+    readingMnemonic: "Seoi1 sounds like 'soy' said high and flat — ALTHOUGH it's just soy sauce, it changes everything." },
 ];
 
 module.exports = characters;
