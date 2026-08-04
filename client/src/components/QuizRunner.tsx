@@ -80,6 +80,8 @@ export default function QuizRunner({
   const current = queue[0];
   const subject = itemsByKey[current.key];
   const answered = totalEntries - queue.length;
+  const colorKind =
+    subject.type === "expression" ? "expression" : current.part === "reading" ? "reading" : "writing";
 
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -134,7 +136,7 @@ export default function QuizRunner({
         {answered} / {totalEntries} answered
       </div>
       <div className={`quiz-card ${feedback}`}>
-        <div className={`quiz-question-type ${current.part}`}>
+        <div className={`quiz-question-type quiz-color-${colorKind}`}>
           {current.part === "meaning" ? "Meaning" : "Reading (Jyutping)"}
         </div>
         <div className="quiz-hanzi" style={{ fontSize: `${hanziFontSizeRem(subject.hanzi, 4)}rem` }}>
@@ -143,7 +145,7 @@ export default function QuizRunner({
         <form onSubmit={onSubmit}>
           <input
             ref={inputRef}
-            className="quiz-input"
+            className={`quiz-input quiz-color-${colorKind}`}
             value={input}
             onChange={(e) => setInput(e.target.value)}
             readOnly={feedback === "wrong"}
@@ -163,7 +165,11 @@ export default function QuizRunner({
           )}
           {feedback === "correct" && <div className="quiz-feedback correct">Correct!</div>}
           <div className="quiz-footer">
-            <button className="btn" type="submit" disabled={feedback === "correct"}>
+            <button
+              className={`btn quiz-color-${colorKind}`}
+              type="submit"
+              disabled={feedback === "correct"}
+            >
               {feedback === "wrong" ? "Continue" : "Answer"}
             </button>
           </div>

@@ -3,5 +3,7 @@ client/dist/
 client/tsconfig.tsbuildinfo
 data/*.sqlite
 data/*.sqlite-journal
+data/*.sqlite-wal
+data/*.sqlite-shm
 .env
 *.log
