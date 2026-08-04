@@ -1,4 +1,4 @@
-export type SubjectType = "character" | "vocabulary";
+export type SubjectType = "character" | "vocabulary" | "expression";
 
 export interface Subject {
   id: number;
@@ -29,12 +29,16 @@ export interface DashboardData {
     charactersGuru: number;
     vocabularyTotal: number;
     vocabularyStarted: number;
+    expressionsTotal: number;
+    expressionsStarted: number;
   };
   totals: {
     totalCharacters: number;
     totalVocabulary: number;
+    totalExpressions: number;
     burnedCharacters: number;
     burnedVocabulary: number;
+    burnedExpressions: number;
     maxLevel: number;
   };
 }
@@ -44,6 +48,7 @@ export interface BrowseLevel {
   unlocked: boolean;
   characters: (Subject & { srsStage: number; srsStageName: string })[];
   vocabulary: (Subject & { srsStage: number; srsStageName: string })[];
+  expressions: (Subject & { srsStage: number; srsStageName: string })[];
 }
 
 class ApiError extends Error {

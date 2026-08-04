@@ -1,7 +1,7 @@
 const express = require("express");
 const db = require("../db");
-const { allCharacters, allVocabulary, getProgress } = require("../subjects");
-const { computeCurrentLevel, GURU_STAGE } = require("../levels");
+const { allCharacters, allVocabulary, allExpressions, getProgress } = require("../subjects");
+const { computeCurrentLevel } = require("../levels");
 const { STAGE_NAMES } = require("../srs");
 
 const router = express.Router();
@@ -19,6 +19,7 @@ router.get("/", (req, res) => {
   const currentLevel = computeCurrentLevel();
   const characters = allCharacters().map(withProgress);
   const vocabulary = allVocabulary().map(withProgress);
+  const expressions = allExpressions().map(withProgress);
 
   const maxLevel = db
     .prepare("SELECT MAX(level) as m FROM characters")
@@ -31,6 +32,7 @@ router.get("/", (req, res) => {
       unlocked: level <= currentLevel,
       characters: characters.filter((c) => c.level === level),
       vocabulary: vocabulary.filter((v) => v.level === level),
+      expressions: expressions.filter((e) => e.level === level),
     });
   }
 

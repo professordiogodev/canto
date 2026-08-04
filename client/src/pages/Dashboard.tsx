@@ -30,6 +30,7 @@ export default function Dashboard() {
   const lp = data.levelProgress;
   const charPct = lp.charactersTotal ? Math.round((lp.charactersGuru / lp.charactersTotal) * 100) : 0;
   const vocabPct = lp.vocabularyTotal ? Math.round((lp.vocabularyStarted / lp.vocabularyTotal) * 100) : 0;
+  const exprPct = lp.expressionsTotal ? Math.round((lp.expressionsStarted / lp.expressionsTotal) * 100) : 0;
 
   return (
     <div>
@@ -84,6 +85,17 @@ export default function Dashboard() {
             {lp.vocabularyStarted}/{lp.vocabularyTotal} started
           </span>
         </div>
+        {lp.expressionsTotal > 0 && (
+          <div className="progress-row">
+            <span className="progress-tag expression">Expressions</span>
+            <div className="progress-track">
+              <div className="progress-fill expression" style={{ width: `${exprPct}%` }} />
+            </div>
+            <span className="progress-count">
+              {lp.expressionsStarted}/{lp.expressionsTotal} started
+            </span>
+          </div>
+        )}
         <p style={{ color: "var(--text-muted)", fontSize: "0.85rem", marginBottom: 0 }}>
           Level {data.currentLevel + 1} unlocks once 90% of this level's characters reach Guru.
         </p>
@@ -102,6 +114,12 @@ export default function Dashboard() {
             <span>Vocabulary burned</span>
             <span>
               {data.totals.burnedVocabulary} / {data.totals.totalVocabulary}
+            </span>
+          </li>
+          <li>
+            <span>Expressions burned</span>
+            <span>
+              {data.totals.burnedExpressions} / {data.totals.totalExpressions}
             </span>
           </li>
         </ul>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { api, BrowseLevel, Subject } from "../api";
+import { hanziFontSizeRem } from "../format";
 
 type BrowseSubject = Subject & { srsStage: number; srsStageName: string };
 
@@ -33,7 +34,10 @@ export default function Browse() {
           <span className={`badge ${stageBadgeClass(selected.srsStage)}`}>
             {selected.srsStageName}
           </span>
-          <div className="card-hanzi" style={{ fontSize: "3rem" }}>
+          <div
+            className="card-hanzi"
+            style={{ fontSize: `${hanziFontSizeRem(selected.hanzi, 3)}rem` }}
+          >
             {selected.hanzi}
           </div>
           <div className="card-section">
@@ -70,7 +74,7 @@ export default function Browse() {
               </button>
             ))}
           </div>
-          <div className="subject-grid">
+          <div className="subject-grid mb-1">
             {level.vocabulary.map((v) => (
               <button
                 key={`v-${v.id}`}
@@ -83,6 +87,21 @@ export default function Browse() {
               </button>
             ))}
           </div>
+          {level.expressions.length > 0 && (
+            <div className="subject-grid">
+              {level.expressions.map((e) => (
+                <button
+                  key={`e-${e.id}`}
+                  className={`subject-chip ${level.unlocked ? "expression" : "locked"}`}
+                  title={e.meanings.join(", ")}
+                  onClick={() => level.unlocked && setSelected(e)}
+                >
+                  {e.hanzi}
+                  {e.srsStage > 0 && <span className="stage-dot" />}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       ))}
     </div>

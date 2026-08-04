@@ -9,6 +9,8 @@
   --char-bg: #fce8f0;
   --vocab-color: #7c3aed;
   --vocab-bg: #f1eafd;
+  --expr-color: #b7791f;
+  --expr-bg: #fbf0d9;
   --accent: #2b7a6f;
   --accent-bg: #e3f2ef;
   --danger: #c0392b;
@@ -30,6 +32,8 @@
     --char-bg: #3a1f2a;
     --vocab-color: #b794f6;
     --vocab-bg: #2b2340;
+    --expr-color: #f0b955;
+    --expr-bg: #3a2f18;
     --accent: #4fd1b5;
     --accent-bg: #1c322e;
     --danger: #ff8a75;
@@ -298,6 +302,10 @@ a {
   color: var(--vocab-color);
 }
 
+.progress-tag.expression {
+  color: var(--expr-color);
+}
+
 .progress-track {
   flex: 1;
   height: 10px;
@@ -318,6 +326,10 @@ a {
 
 .progress-fill.vocabulary {
   background: var(--vocab-color);
+}
+
+.progress-fill.expression {
+  background: var(--expr-color);
 }
 
 .progress-count {
@@ -356,6 +368,17 @@ a {
 
 .subject-chip.vocabulary {
   background: var(--vocab-color);
+}
+
+.subject-chip.expression {
+  background: var(--expr-color);
+  width: auto;
+  min-width: 56px;
+  height: auto;
+  min-height: 56px;
+  padding: 0.4rem 0.6rem;
+  font-size: 1.1rem;
+  white-space: nowrap;
 }
 
 .subject-chip.locked {
@@ -426,6 +449,11 @@ a {
 .card-type-badge.vocabulary {
   background: var(--vocab-bg);
   color: var(--vocab-color);
+}
+
+.card-type-badge.expression {
+  background: var(--expr-bg);
+  color: var(--expr-color);
 }
 
 .card-hanzi {

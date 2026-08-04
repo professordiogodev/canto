@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { api, Subject } from "../api";
 import QuizRunner, { QuizResult } from "../components/QuizRunner";
+import { hanziFontSizeRem } from "../format";
 
 const BATCH_SIZE = 5;
 
@@ -54,7 +55,9 @@ export default function Lessons() {
         </div>
         <div className="card">
           <span className={`card-type-badge ${subject.type}`}>{subject.type}</span>
-          <div className="card-hanzi">{subject.hanzi}</div>
+          <div className="card-hanzi" style={{ fontSize: `${hanziFontSizeRem(subject.hanzi)}rem` }}>
+            {subject.hanzi}
+          </div>
           <div className="card-level">Level {subject.level}</div>
           <div className="card-section">
             <h4>Meaning</h4>

@@ -1,9 +1,10 @@
 const express = require("express");
 const db = require("../db");
-const { parseCharacter, parseVocabulary, getProgress } = require("../subjects");
+const { getSubject, getProgress } = require("../subjects");
 const { nextStage, nextAvailableAt, STAGE_NAMES } = require("../srs");
 
 const router = express.Router();
+const VALID_TYPES = new Set(["character", "vocabulary", "expression"]);
 
 router.get("/", (req, res) => {
   const dueProgress = db
@@ -15,13 +16,8 @@ router.get("/", (req, res) => {
 
   const items = dueProgress
     .map((p) => {
-      const row =
-        p.subject_type === "character"
-          ? db.prepare("SELECT * FROM characters WHERE id = ?").get(p.subject_id)
-          : db.prepare("SELECT * FROM vocabulary WHERE id = ?").get(p.subject_id);
-      if (!row) return null;
-      const subject =
-        p.subject_type === "character" ? parseCharacter(row) : parseVocabulary(row);
+      const subject = getSubject(p.subject_type, p.subject_id);
+      if (!subject) return null;
       return { ...subject, srsStage: p.srs_stage };
     })
     .filter(Boolean);
@@ -38,7 +34,7 @@ router.get("/", (req, res) => {
 router.post("/submit", (req, res) => {
   const { type, id, meaningCorrect, readingCorrect } = req.body || {};
   if (
-    (type !== "character" && type !== "vocabulary") ||
+    !VALID_TYPES.has(type) ||
     typeof id !== "number" ||
     typeof meaningCorrect !== "boolean" ||
     typeof readingCorrect !== "boolean"

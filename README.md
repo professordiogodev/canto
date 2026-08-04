@@ -10,24 +10,31 @@ simple shared password.
 
 ## How it works
 
-- **Characters** (81 in the starter set) and **vocabulary** (80 words) are
-  organized into 8 levels.
+- **Characters** (186), **vocabulary** (177 words), and **expressions** (29
+  short natural phrases/sentences) are organized into 20 levels.
 - Level `N+1` unlocks once 90% of level `N`'s characters reach the "Guru" SRS
-  stage.
+  stage. Vocabulary and expressions unlock along with their level, using
+  characters from that level or earlier.
 - **Lessons** introduce new items in batches of 5: a flashcard intro (meaning +
   reading + mnemonics), then a quick quiz, then the item enters your review
   queue at SRS stage 1.
 - **Reviews** ask you the meaning and reading for every item that's due, on
   the WaniKani interval schedule (4h → 8h → 23h → 2d → 1wk → 2wk → 1mo → 4mo →
   burned). Answer both correctly to advance a stage; get either wrong and you
-  drop back (1 stage below Guru, 2 stages at or above Guru).
+  drop back (1 stage below Guru, 2 stages at or above Guru). After a wrong
+  answer, the correct answer is shown — press Enter or click Continue to move
+  on.
 - **Browse** lets you look through every item by level with its current SRS
   stage and mnemonics.
 
-The starter dataset covers numbers, family terms, time words, common verbs,
-places/directions, question words, food, and connectors — real, commonly used
-Cantonese, accurate Jyutping. It's meant to be a solid starting point; see
-"Adding more content" below to extend it.
+The dataset covers numbers, family terms, time words, common verbs,
+places/directions, question words, food, weather, body parts, transport,
+emotions, money, school/work, house objects, health, politeness, and grammar
+connectors — plus expressions that combine them into real short phrases and
+questions (e.g. 你去邊 "where are you going?", 唔該 "please/thank you"). All
+real, commonly used Cantonese with accurate Jyutping. See "Adding more
+content" below to keep extending it — the dataset is designed to grow safely
+without disturbing your progress.
 
 ## Requirements
 
@@ -67,7 +74,9 @@ This is one Node process + one SQLite file, so hosting it yourself is simple:
 2. `npm install && npm run build`
 3. Create `.env` with `APP_PASSWORD`, `SESSION_SECRET`, and whatever `PORT`
    you want.
-4. `npm run seed` (only once — it refuses to reseed if data already exists).
+4. `npm run seed` (safe to run again any time — it only inserts content
+   beyond what's already there, so it never touches or duplicates existing
+   progress).
 5. Run `npm start`, ideally under a process manager so it survives reboots,
    e.g.:
 
@@ -85,39 +94,47 @@ Your entire learning history lives in `data/canto.sqlite` — back that file up
 
 ## Adding more content
 
-Characters and vocabulary live in plain JS arrays:
+Content lives in three plain JS arrays:
 
 - `server/seed/characters.js`
 - `server/seed/vocabulary.js`
+- `server/seed/expressions.js`
 
 Each entry is `{ hanzi, level, jyutping: [...], meanings: [...],
-meaningMnemonic, readingMnemonic }`. Vocabulary entries also have
-`characterIds`, referencing the 1-based position of characters in
-`characters.js` (used for potential cross-linking; the array order determines
-database IDs since the seed script inserts in array order).
+meaningMnemonic, readingMnemonic }`. You don't need to track character ids —
+a word's or expression's component characters are derived automatically at
+seed time by splitting its `hanzi` string (Chinese text has no spaces, so
+"你好".split → 你, 好) and looking each one up, so just write real words made
+of characters that exist somewhere in `characters.js`.
 
 To add more:
 
-1. Append new entries (or a new level) to those files.
-2. If you're adding to a level that's already seeded, either delete
-   `data/canto.sqlite` and reseed everything (you'll lose progress), or
-   insert the new rows directly with a small one-off script using
-   `server/db.js` — the seed script's "refuse to reseed" guard is there
-   specifically to protect existing progress from being clobbered.
+1. **Append** new entries (or a whole new level) to the end of the relevant
+   file(s) — never reorder or remove an existing entry. Database ids are
+   assigned in array order, so appending keeps every existing id (and
+   therefore every existing SRS progress row) stable.
+2. Run `npm run seed` again. It inserts only the rows beyond what's already
+   in each table, so your existing progress is completely untouched — this
+   is the intended, safe way to grow the app over time.
+
+If you ever do need to reorder or edit existing entries, that requires a
+fresh `data/canto.sqlite` (delete the file and reseed), which resets all
+progress — so it's worth avoiding unless you're just getting started.
 
 ## Project structure
 
 ```
 server/           Express API, SQLite schema, SRS logic, seed data
-  db.js           Database connection + schema
+  db.js           Database connection + schema (+ in-place migrations)
   srs.js          SRS stage/interval logic (pure functions)
   levels.js       Level-unlock calculation
-  subjects.js     Character/vocabulary read helpers
+  subjects.js     Character/vocabulary/expression read helpers
   routes/         auth, dashboard, lessons, reviews, subjects endpoints
-  seed/           Starter content + seed script
+  seed/           Content (characters/vocabulary/expressions) + seed script
 client/           React + TypeScript frontend (Vite)
   src/pages/      Login, Dashboard, Lessons, Reviews, Browse
   src/components/ QuizRunner (shared lesson/review quiz engine)
   src/matching.ts Answer-matching (fuzzy meaning match, exact reading match)
+  src/format.ts   Display helpers (e.g. scaling hanzi font size for long expressions)
 data/             SQLite database file (git-ignored)
 ```

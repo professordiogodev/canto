@@ -1,10 +1,12 @@
 const express = require("express");
 const db = require("../db");
 const { computeCurrentLevel } = require("../levels");
-const { parseCharacter, parseVocabulary, getOrCreateProgress } = require("../subjects");
+const { parseCharacter, parseVocabulary, parseExpression, getOrCreateProgress } = require("../subjects");
 const { nextAvailableAt } = require("../srs");
 
 const router = express.Router();
+
+const VALID_TYPES = new Set(["character", "vocabulary", "expression"]);
 
 router.get("/", (req, res) => {
   const currentLevel = computeCurrentLevel();
@@ -29,9 +31,19 @@ router.get("/", (req, res) => {
     .all(currentLevel)
     .map(parseVocabulary);
 
-  // Characters before vocabulary, so you always meet a character before
-  // meeting words that use it.
-  res.json({ currentLevel, items: [...chars, ...vocab] });
+  const expressions = db
+    .prepare(
+      `SELECT e.* FROM expressions e
+       LEFT JOIN progress p ON p.subject_type = 'expression' AND p.subject_id = e.id
+       WHERE e.level <= ? AND (p.id IS NULL OR p.srs_stage = 0)
+       ORDER BY e.level, e.id`
+    )
+    .all(currentLevel)
+    .map(parseExpression);
+
+  // Characters, then vocabulary, then expressions, so you always meet the
+  // building blocks before the things built from them.
+  res.json({ currentLevel, items: [...chars, ...vocab, ...expressions] });
 });
 
 router.post("/complete", (req, res) => {
@@ -45,7 +57,7 @@ router.post("/complete", (req, res) => {
 
   const upsert = db.transaction((items) => {
     for (const { type, id } of items) {
-      if (type !== "character" && type !== "vocabulary") continue;
+      if (!VALID_TYPES.has(type)) continue;
       getOrCreateProgress(type, id);
       db.prepare(
         `UPDATE progress

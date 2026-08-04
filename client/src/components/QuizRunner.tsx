@@ -1,6 +1,7 @@
 import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { Subject } from "../api";
 import { meaningMatches, readingMatches } from "../matching";
+import { hanziFontSizeRem } from "../format";
 
 export interface QuizResult {
   type: Subject["type"];
@@ -136,14 +137,16 @@ export default function QuizRunner({
         <div className={`quiz-question-type ${current.part}`}>
           {current.part === "meaning" ? "Meaning" : "Reading (Jyutping)"}
         </div>
-        <div className="quiz-hanzi">{subject.hanzi}</div>
+        <div className="quiz-hanzi" style={{ fontSize: `${hanziFontSizeRem(subject.hanzi, 4)}rem` }}>
+          {subject.hanzi}
+        </div>
         <form onSubmit={onSubmit}>
           <input
             ref={inputRef}
             className="quiz-input"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            disabled={feedback === "wrong"}
+            readOnly={feedback === "wrong"}
             placeholder={current.part === "meaning" ? "English meaning" : "e.g. nei5 hou2"}
             autoComplete="off"
             autoCapitalize="off"
