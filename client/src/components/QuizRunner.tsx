@@ -100,6 +100,11 @@ export default function QuizRunner({
       return;
     }
 
+    if (!input.trim()) {
+      // Blank submissions don't count as an attempt — just ignore them.
+      return;
+    }
+
     const correct =
       current.part === "meaning"
         ? meaningMatches(input, subject.meanings)
@@ -142,7 +147,7 @@ export default function QuizRunner({
         </div>
         <div className="quiz-hanzi" style={{ fontSize: `${hanziFontSizeRem(subject.hanzi, 4)}rem` }}>
           {subject.hanzi}
-          <SpeakButton text={subject.hanzi} />
+          {feedback === "wrong" && <SpeakButton text={subject.hanzi} />}
         </div>
         <form onSubmit={onSubmit}>
           <input

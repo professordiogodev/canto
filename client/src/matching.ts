@@ -37,7 +37,9 @@ export function meaningMatches(input: string, meanings: string[]): boolean {
 }
 
 function normalizeJyutping(str: string): string {
-  return str.toLowerCase().trim().replace(/\s+/g, " ");
+  // Strip spaces entirely so multi-syllable answers can be typed with or
+  // without spaces between syllables (e.g. "nei5hou2" or "nei5 hou2").
+  return str.toLowerCase().trim().replace(/\s+/g, "");
 }
 
 export function readingMatches(input: string, jyutpingOptions: string[]): boolean {
