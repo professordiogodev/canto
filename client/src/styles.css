@@ -1,0 +1,622 @@
+:root {
+  --bg: #f6f4f1;
+  --surface: #ffffff;
+  --surface-alt: #f0eeea;
+  --border: #e3ddd3;
+  --text: #24211d;
+  --text-muted: #746e64;
+  --char-color: #d6336c;
+  --char-bg: #fce8f0;
+  --vocab-color: #7c3aed;
+  --vocab-bg: #f1eafd;
+  --accent: #2b7a6f;
+  --accent-bg: #e3f2ef;
+  --danger: #c0392b;
+  --danger-bg: #fbeae7;
+  --success: #2f9e44;
+  --radius: 10px;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16181d;
+    --surface: #1e2127;
+    --surface-alt: #262a31;
+    --border: #33373f;
+    --text: #eceae6;
+    --text-muted: #9a978f;
+    --char-color: #ff7bab;
+    --char-bg: #3a1f2a;
+    --vocab-color: #b794f6;
+    --vocab-bg: #2b2340;
+    --accent: #4fd1b5;
+    --accent-bg: #1c322e;
+    --danger: #ff8a75;
+    --danger-bg: #3a2420;
+    --success: #6fd97f;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+button,
+input {
+  font-family: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+.app-shell {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-header {
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.app-header-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0.75rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.brand {
+  font-weight: 700;
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: var(--accent);
+}
+
+.main-nav {
+  display: flex;
+  gap: 1rem;
+  flex: 1;
+}
+
+.main-nav a {
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  padding: 0.35rem 0;
+  border-bottom: 2px solid transparent;
+}
+
+.main-nav a.active {
+  color: var(--text);
+  border-bottom-color: var(--accent);
+}
+
+.link-button {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0.3rem 0;
+}
+
+.link-button:hover {
+  color: var(--text);
+}
+
+.app-main {
+  flex: 1;
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 3rem;
+}
+
+.page-loading,
+.page-empty {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 3rem 1rem;
+}
+
+/* ---------- Login ---------- */
+
+.login-page {
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.login-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2rem;
+  width: 100%;
+  max-width: 340px;
+  text-align: center;
+}
+
+.login-card h1 {
+  margin-top: 0;
+  color: var(--accent);
+}
+
+.login-card input {
+  width: 100%;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-alt);
+  color: var(--text);
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.login-error {
+  color: var(--danger);
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border: none;
+  border-radius: 8px;
+  padding: 0.65rem 1.3rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: var(--accent);
+  color: white;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: var(--surface-alt);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+/* ---------- Dashboard ---------- */
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.stat-card .stat-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+
+.stat-card.lessons .stat-number {
+  color: var(--accent);
+}
+
+.stat-card.reviews .stat-number {
+  color: var(--vocab-color);
+}
+
+.stat-card .stat-label {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 0.9rem;
+}
+
+.stat-card .stat-hint {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  box-shadow: var(--shadow);
+  margin-bottom: 1.25rem;
+}
+
+.panel h2 {
+  margin-top: 0;
+  font-size: 1.05rem;
+}
+
+.progress-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.6rem;
+}
+
+.progress-row .progress-tag {
+  width: 90px;
+  flex-shrink: 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.progress-tag.character {
+  color: var(--char-color);
+}
+
+.progress-tag.vocabulary {
+  color: var(--vocab-color);
+}
+
+.progress-track {
+  flex: 1;
+  height: 10px;
+  background: var(--surface-alt);
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 6px;
+}
+
+.progress-fill.character {
+  background: var(--char-color);
+}
+
+.progress-fill.vocabulary {
+  background: var(--vocab-color);
+}
+
+.progress-count {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  width: 70px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* ---------- Subject chips / grids ---------- */
+
+.subject-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.subject-chip {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  font-size: 1.4rem;
+  cursor: default;
+  color: white;
+  position: relative;
+}
+
+.subject-chip.character {
+  background: var(--char-color);
+}
+
+.subject-chip.vocabulary {
+  background: var(--vocab-color);
+}
+
+.subject-chip.locked {
+  background: var(--surface-alt);
+  color: var(--text-muted);
+  border: 1px dashed var(--border);
+}
+
+.subject-chip .stage-dot {
+  position: absolute;
+  bottom: 3px;
+  right: 3px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.level-section {
+  margin-bottom: 1.5rem;
+}
+
+.level-section h3 {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 0.6rem;
+}
+
+.level-section.locked {
+  opacity: 0.45;
+}
+
+/* ---------- Flashcards / quiz ---------- */
+
+.flow-progress {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2rem 1.5rem;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.card-type-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  margin-bottom: 1rem;
+}
+
+.card-type-badge.character {
+  background: var(--char-bg);
+  color: var(--char-color);
+}
+
+.card-type-badge.vocabulary {
+  background: var(--vocab-bg);
+  color: var(--vocab-color);
+}
+
+.card-hanzi {
+  font-size: 4.5rem;
+  text-align: center;
+  margin: 0.5rem 0 1rem;
+}
+
+.card-level {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.card-section {
+  margin-bottom: 1.25rem;
+}
+
+.card-section h4 {
+  margin: 0 0 0.3rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+
+.card-section .value {
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.card-section p {
+  margin: 0.3rem 0 0;
+  color: var(--text-muted);
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+/* ---------- Quiz ---------- */
+
+.quiz-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2rem 1.5rem;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.quiz-card.wrong {
+  animation: shake 0.3s;
+  border-color: var(--danger);
+}
+
+.quiz-card.correct {
+  border-color: var(--success);
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-6px);
+  }
+  75% {
+    transform: translateX(6px);
+  }
+}
+
+.quiz-question-type {
+  text-align: center;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.quiz-question-type.meaning {
+  color: var(--accent);
+}
+
+.quiz-question-type.reading {
+  color: var(--vocab-color);
+}
+
+.quiz-hanzi {
+  font-size: 4rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.quiz-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1.2rem;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-alt);
+  color: var(--text);
+  text-align: center;
+}
+
+.quiz-input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.quiz-feedback {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.quiz-feedback.wrong {
+  color: var(--danger);
+}
+
+.quiz-feedback.correct {
+  color: var(--success);
+}
+
+.quiz-footer {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+/* ---------- Misc ---------- */
+
+.text-center {
+  text-align: center;
+}
+
+.mb-1 {
+  margin-bottom: 1rem;
+}
+
+.summary-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.summary-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.summary-list li:last-child {
+  border-bottom: none;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.badge.stage-locked {
+  background: var(--surface-alt);
+  color: var(--text-muted);
+}
+
+.badge.stage-apprentice {
+  background: var(--char-bg);
+  color: var(--char-color);
+}
+
+.badge.stage-guru {
+  background: var(--vocab-bg);
+  color: var(--vocab-color);
+}
+
+.badge.stage-master,
+.badge.stage-enlightened,
+.badge.stage-burned {
+  background: var(--accent-bg);
+  color: var(--accent);
+}

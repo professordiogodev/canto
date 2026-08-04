@@ -1,0 +1,7 @@
+node_modules/
+client/dist/
+client/tsconfig.tsbuildinfo
+data/*.sqlite
+data/*.sqlite-journal
+.env
+*.log
