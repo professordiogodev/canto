@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { api, BrowseLevel, Subject } from "../api";
+import SpeakButton from "../components/SpeakButton";
 import { hanziFontSizeRem } from "../format";
 
 type BrowseSubject = Subject & { srsStage: number; srsStageName: string };
@@ -39,6 +40,7 @@ export default function Browse() {
             style={{ fontSize: `${hanziFontSizeRem(selected.hanzi, 3)}rem` }}
           >
             {selected.hanzi}
+            <SpeakButton text={selected.hanzi} />
           </div>
           <div className="card-section">
             <h4>Meaning</h4>

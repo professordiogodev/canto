@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="420" viewBox="0 0 420 420">
+  <g fill="#4a453c" font-family="'PingFang HK', 'Noto Sans HK', 'Microsoft YaHei', sans-serif">
+    <text x="18" y="95" font-size="78" fill-opacity="0.05" transform="rotate(-8 18 95)">學</text>
+    <text x="235" y="65" font-size="52" fill-opacity="0.045" transform="rotate(7 235 65)">好</text>
+    <text x="330" y="230" font-size="66" fill-opacity="0.05" transform="rotate(-5 330 230)">你</text>
+    <text x="55" y="270" font-size="56" fill-opacity="0.045" transform="rotate(10 55 270)">中</text>
+    <text x="200" y="345" font-size="60" fill-opacity="0.05" transform="rotate(-6 200 345)">話</text>
+    <text x="335" y="400" font-size="42" fill-opacity="0.045" transform="rotate(8 335 400)">早</text>
+  </g>
+</svg>

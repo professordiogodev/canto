@@ -2,6 +2,7 @@ import { FormEvent, useEffect, useMemo, useRef, useState } from "react";
 import { Subject } from "../api";
 import { meaningMatches, readingMatches } from "../matching";
 import { hanziFontSizeRem } from "../format";
+import SpeakButton from "./SpeakButton";
 
 export interface QuizResult {
   type: Subject["type"];
@@ -141,6 +142,7 @@ export default function QuizRunner({
         </div>
         <div className="quiz-hanzi" style={{ fontSize: `${hanziFontSizeRem(subject.hanzi, 4)}rem` }}>
           {subject.hanzi}
+          <SpeakButton text={subject.hanzi} />
         </div>
         <form onSubmit={onSubmit}>
           <input
