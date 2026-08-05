@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
   const dueProgress = db
     .prepare(
       `SELECT * FROM progress
-       WHERE srs_stage BETWEEN 1 AND 8 AND available_at IS NOT NULL AND available_at <= datetime('now')`
+       WHERE srs_stage BETWEEN 1 AND 8 AND available_at IS NOT NULL AND available_at <= strftime('%Y-%m-%dT%H:%M:%fZ', 'now')`
     )
     .all();
 

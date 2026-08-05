@@ -27,14 +27,14 @@ router.get("/", (req, res) => {
   const reviewsAvailable = db
     .prepare(
       `SELECT COUNT(*) as n FROM progress
-       WHERE srs_stage BETWEEN 1 AND 8 AND available_at IS NOT NULL AND available_at <= datetime('now')`
+       WHERE srs_stage BETWEEN 1 AND 8 AND available_at IS NOT NULL AND available_at <= strftime('%Y-%m-%dT%H:%M:%fZ', 'now')`
     )
     .get().n;
 
   const nextReviewAt = db
     .prepare(
       `SELECT MIN(available_at) as t FROM progress
-       WHERE srs_stage BETWEEN 1 AND 8 AND available_at IS NOT NULL AND available_at > datetime('now')`
+       WHERE srs_stage BETWEEN 1 AND 8 AND available_at IS NOT NULL AND available_at > strftime('%Y-%m-%dT%H:%M:%fZ', 'now')`
     )
     .get().t;
 
